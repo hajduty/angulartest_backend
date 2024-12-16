@@ -1,8 +1,7 @@
-using System;
-
-namespace backend.Data;
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
+
+namespace backend.Data;
 
 public class ApplicationDbContext : DbContext
 {
@@ -10,6 +9,6 @@ public class ApplicationDbContext : DbContext
     {
     }
 
-    public DbSet<User> Users { get; set; }
-    public DbSet<Book> Books { get; set; }
+    public required DbSet<User> Users { get; set; }
+    public required DbSet<Book> Books { get; set; }
 }
