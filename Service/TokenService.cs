@@ -26,6 +26,8 @@ public class TokenService
             {
                 new Claim(ClaimTypes.Email, user.Email),
             }),
+            Issuer = "http://localhost:5203",
+            Audience = "http://localhost:5203",
             Expires = DateTime.UtcNow.AddDays(1),
             SigningCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature)
         };
