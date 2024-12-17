@@ -1,3 +1,4 @@
+using System.Reflection;
 using backend.Data;
 using backend.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -37,7 +38,11 @@ builder.Services.AddScoped<TokenService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
+    $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
+});
 
 builder.Services.AddCors(options =>
 {
@@ -49,7 +54,6 @@ builder.Services.AddCors(options =>
                    .AllowAnyMethod();
         });
 });
-
 
 var app = builder.Build();
 
