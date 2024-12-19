@@ -8,6 +8,10 @@ using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Configuration["ConnectionStrings:DefaultConnection"] = Environment.GetEnvironmentVariable("DEFAULT_CONNECTION");
+builder.Configuration["JWT:Issuer"] = Environment.GetEnvironmentVariable("JWT_ISSUER");
+builder.Configuration["JWT:Audience"] = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
+builder.Configuration["JWT:SigningKey"] = Environment.GetEnvironmentVariable("JWT_SIGNINGKEY");
 
 builder.Services.AddAuthentication(options =>
 {
@@ -33,7 +37,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+Console.WriteLine("ConnectionString = " + builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

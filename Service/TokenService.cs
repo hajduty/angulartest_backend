@@ -27,8 +27,8 @@ public class TokenService
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             }),
-            Issuer = "http://localhost:5203",
-            Audience = "http://localhost:5203",
+            Issuer = _configuration["JWT:Issuer"],
+            Audience = _configuration["JWT:Audience"],
             Expires = DateTime.UtcNow.AddDays(1),
             SigningCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature)
         };
