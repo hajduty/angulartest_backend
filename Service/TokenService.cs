@@ -25,6 +25,7 @@ public class TokenService
             Subject = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             }),
             Issuer = "http://localhost:5203",
             Audience = "http://localhost:5203",

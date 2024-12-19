@@ -7,5 +7,5 @@ public class Quote
     public int Id { get; set; }
     public required string Text { get; set; }
     public int UserId { get; set; }
-    public required User User { get; set; }
+    public virtual User? User { get; set; }
 }
