@@ -12,7 +12,6 @@ namespace backend.Controllers
 {
     [Route("api/book")]
     [ApiController]
-    [Authorize]
     public class BookController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -57,6 +56,7 @@ namespace backend.Controllers
         /// <param name="bookDto">Data transfer object containing book details</param>
         /// <returns>Created book with assigned ID</returns>
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Book>> CreateBook([FromBody] BookCreateDto bookDto)
         {
             if (!ModelState.IsValid)
@@ -77,6 +77,7 @@ namespace backend.Controllers
         /// </summary>
         /// <param name="id">Book Id</param>
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteBook(int id)
         {
             var book = await _context.Books.FindAsync(id);
@@ -98,6 +99,7 @@ namespace backend.Controllers
         /// <param name="id">Book Id</param>
         /// <param name="updatedBook">Updated book info</param>
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateBook(int id, [FromBody] Book updatedBook)
         {
             if (id != updatedBook.Id)
