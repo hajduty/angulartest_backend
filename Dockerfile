@@ -39,7 +39,7 @@ ENV JWT_AUDIENCE=http://localhost:5203
 COPY --from=build /app ./
 
 # Expose the port
-EXPOSE 5000 4002
+EXPOSE 6000 7002
 
 # Run the application
 ENTRYPOINT ["dotnet", "backend.dll"]
